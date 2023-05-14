@@ -1,3 +1,4 @@
+import os
 import nltk
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.corpus import stopwords
@@ -40,11 +41,15 @@ def summarize_text(file_path, n):
     # select the top n sentences with the highest scores
     top_sentences = nlargest(n, sentence_scores, key=sentence_scores.get)
     summary = ' '.join([sentences[i] for i in sorted(top_sentences)])
+
+    # save summary to output file with "-OUTPUT" appended to the original file name
+    output_path = os.path.join('output-files', os.path.basename(file_path) + '-OUTPUT')
+    with open(output_path, 'w') as f:
+        f.write(summary)
+
     return summary
 
 # example usage
 file_path = 'text-files/lone-lamppost.txt' # change this to the path of the text file you want to summarize, such as 'text-files/lone-lamppost.txt' or 'text-files/lorem-ipsum.txt'
 summary = summarize_text(file_path, 3) # change the second argument to the number of sentences you want in the summary
 print(summary) # print the summary
-
-
