@@ -26,3 +26,13 @@ def summarize_text(file_path, n):
     max_freq = max(word_freq.values())
     for word in word_freq.keys():
         word_scores[word] = word_freq[word] / max_freq
+
+    # calculate sentence scores based on reduced word frequencies and position
+    sentence_scores = defaultdict(int)
+    for i, sentence in enumerate(sentences):
+        words = word_tokenize(sentence.lower())
+        for word in words:
+            if word in word_scores:
+                sentence_scores[i] += word_scores[word]
+        sentence_scores[i] /= len(words)
+        sentence_scores[i] += (n - i) * 0.1
