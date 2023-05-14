@@ -5,3 +5,6 @@ from collections import defaultdict
 from heapq import nlargest
 
 def summarize_text(file_path, n):
+    # read text from file
+    with open(file_path, 'r') as f:
+        text = f.read()
