@@ -41,3 +41,10 @@ def summarize_text(file_path, n):
     top_sentences = nlargest(n, sentence_scores, key=sentence_scores.get)
     summary = ' '.join([sentences[i] for i in sorted(top_sentences)])
     return summary
+
+# example usage
+file_path = 'text-files/lone-lamppost.txt' # change this to the path of the text file you want to summarize, such as 'text-files/lone-lamppost.txt' or 'text-files/lorem-ipsum.txt'
+summary = summarize_text(file_path, 3) # change the second argument to the number of sentences you want in the summary
+print(summary) # print the summary
+
+
