@@ -36,3 +36,8 @@ def summarize_text(file_path, n):
                 sentence_scores[i] += word_scores[word]
         sentence_scores[i] /= len(words)
         sentence_scores[i] += (n - i) * 0.1
+
+    # select the top n sentences with the highest scores
+    top_sentences = nlargest(n, sentence_scores, key=sentence_scores.get)
+    summary = ' '.join([sentences[i] for i in sorted(top_sentences)])
+    return summary
