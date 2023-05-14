@@ -5,6 +5,8 @@ from nltk.corpus import stopwords
 from collections import defaultdict
 from heapq import nlargest
 
+nltk.download('stopwords', force=True)
+
 def summarize_text(file_path, n):
     # read text from file
     with open(file_path, 'r') as f:
@@ -42,14 +44,14 @@ def summarize_text(file_path, n):
     top_sentences = nlargest(n, sentence_scores, key=sentence_scores.get)
     summary = ' '.join([sentences[i] for i in sorted(top_sentences)])
 
-    # save summary to output file with "-OUTPUT" appended to the original file name
-    output_path = os.path.join('output-files', os.path.basename(file_path) + '-OUTPUT')
+    # save summary to output file with "OUTPUT-" appended to the beginning of the original file name
+    output_path = os.path.join('output-files', 'OUTPUT-' + os.path.basename(file_path))
     with open(output_path, 'w') as f:
         f.write(summary)
 
     return summary
 
 # example usage
-file_path = 'text-files/lone-lamppost.txt' # change this to the path of the text file you want to summarize, such as 'text-files/lone-lamppost.txt' or 'text-files/lorem-ipsum.txt'
+file_path = 'text-files/motorcar.txt' # change this to the path of the text file you want to summarize, such as 'text-files/lone-lamppost.txt' or 'text-files/lorem-ipsum.txt'
 summary = summarize_text(file_path, 3) # change the second argument to the number of sentences you want in the summary
 print(summary) # print the summary
