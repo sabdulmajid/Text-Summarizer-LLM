@@ -33,7 +33,7 @@ The advanced text summarizer incorporates multiple techniques to generate compre
 ```shell
 git clone https://github.com/sabdulmajid/Text-Summarizer-LLM.git
 ```
-  2.** Navigate to the project directory**:
+  2. **Navigate to the project directory**:
 ```shell
 cd Text-Summarizer-LLM
 ```
